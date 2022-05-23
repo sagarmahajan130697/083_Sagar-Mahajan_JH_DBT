@@ -1,0 +1,20 @@
+create table temp
+(
+strname varchar(20),
+message varchar(20)
+);
+
+delimiter //
+create procedure PROC1 (string1 varchar(10),string2 varchar(10))
+begin
+if instr (string1,string2)
+then
+insert into temp values (string1,'MATCHED');
+end if;
+end; //
+delimiter ;
+call PROC1("CDAC","DAC");
+call PROC1("CDAC","ddd");
+select * from temp;
+truncate table temp;
+drop procedure proc1;
